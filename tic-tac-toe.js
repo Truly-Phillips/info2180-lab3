@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPlayer = "X";
 
     const status = document.querySelector("#status");
+    const newGameButton = document.querySelector(".btn");
     const winningCombinations = [
 	[0, 1, 2],
 	[3, 4, 5],
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	square.addEventListener("mouseover", function () {
 	    square.classList.add("hover");
+
 	});
 
 	square.addEventListener("mouseout", function () {
@@ -28,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
         square.addEventListener("click", function () {
             square.textContent = currentPlayer;
             square.classList.add(currentPlayer);
+
+
 
 winningCombinations.forEach(function (combination) {
     if (
@@ -47,6 +51,22 @@ winningCombinations.forEach(function (combination) {
                 currentPlayer = "X";
             }
         });
+    });
+
+	newGameButton.addEventListener("click", function () {
+    	squares.forEach(function (square) {
+        	square.textContent = "";
+        	square.classList.remove("X");
+        	square.classList.remove("O");
+        	square.classList.remove("hover");
+    	});
+
+    	currentPlayer = "X";
+
+    	status.textContent =
+        	"Move your mouse over a square and click to play an X or an O.";
+
+    	status.classList.remove("you-won");
     });
 });
 
