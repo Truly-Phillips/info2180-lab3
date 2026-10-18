@@ -2,6 +2,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const squares = document.querySelectorAll("#board div");
     let currentPlayer = "X";
 
+    const status = document.querySelector("#status");
+    const winningCombinations = [
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[0, 4, 8],
+	[2, 4, 6],
+];
+
     squares.forEach(function (square) {
         square.classList.add("square");
 
@@ -16,6 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
         square.addEventListener("click", function () {
             square.textContent = currentPlayer;
             square.classList.add(currentPlayer);
+
+winningCombinations.forEach(function (combination) {
+    if (
+	squares[combination[0]].classList.contains(currentPlayer) &&
+	squares[combination[1]].classList.contains(currentPlayer) &&
+	squares[combination[2]].classList.contains(currentPlayer) 
+     ) {
+	status.textContent = 
+	   "Congratulations! " + currentPlayer + " is the winner!";
+	status.classList.add("you-won");
+	}
+});
 
             if (currentPlayer === "X") {
                 currentPlayer = "O";
