@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
         square.addEventListener("click", function () {
+	    if (square.textContent !== "") {
+ 	        return;
+	     }
             square.textContent = currentPlayer;
             square.classList.add(currentPlayer);
 
